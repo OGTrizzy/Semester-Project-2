@@ -1,0 +1,77 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '~@fontsource/roboto/400.css'; 
+@import '~@fontsource/roboto/700.css';
+@import '~@fontsource/lato/400.css';
+@import '~@fontsource/lato/700.css';
+
+body {
+  background-color: #ffffff;
+  font-family: 'Roboto', sans-serif; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif; 
+}
+
+
+header{
+    background-color: #F6F7EB;
+}
+
+.b-line-top, .b-line-normal, .b-footer{
+    min-width: 100%;
+    width: 100%;
+    background-color: #3F88C5;
+}
+
+.b-line-top{
+    height: 9px;
+    min-height: 9px;
+}
+
+.b-line-normal{
+    height: 1px;
+    min-height: 1px;
+}
+
+#logo{
+    max-width: 150px;
+    max-height: fit-content;
+    border-radius: 10px;
+}
+
+.nav-link { //i made this much harder than i needed it to lmao
+    position: relative;
+    display: inline-block;
+    transition: color 0.4s ease;
+
+    &:hover, &.active {
+        color: #FF7A59 !important;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0%;
+        height: 2px;
+        background-color: #FF7A59;
+        transition: all 0.4s ease;
+        transform: translateX(-50%);
+    }
+
+    &:hover::after, &.active::after {
+        width: 50%;
+    }
+}
+
+.custom-register {
+    color:#3F88C5 !important;
+}
+
+.custom-login, .custom-register {
+    font-weight: bold;
+}
+
+
