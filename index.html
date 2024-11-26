@@ -8,43 +8,72 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./assets/js/auth/login.js"></script>
+    <script type="module" src="./assets/js/header.js"></script>
   </head>
   <body>
     <header class="border-bottom">
       <div class="b-line-top"></div>
-  
-        <div class="container d-flex align-items-center py-2">
-            <div class="me-3">
-                <a href="index.html" class="text-decoration-none text-dark">
-                    <img id="logo" src="assets/images/bidder-school.png" alt="Bidder Logo" style="max-height: 60px;">
-                </a>
-              </div>
-  
-              <nav class="navbar navbar-expand-md w-100">
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                      <ul class="navbar-nav mx-auto">
-                        <button class="btn btn-outline-secondary me-3">☰ Category</button>
-                        <li class="nav-item"><a class="nav-link active" href="index.html">Auctions</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./pages/info.html">Information</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./pages/create.html">Create a sale</a></li>
-                        <li class="nav-item"><a class="nav-link custom-register" href="./pages/register.html">Register</a></li>
-                        <li class="nav-item"><a class="nav-link custom-login"  data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                      </ul>
-                  </div>
-              </nav>
+    
+      <div class="container d-flex align-items-center py-2">
+        <div class="me-3">
+          <a href="index.html" class="text-decoration-none text-dark">
+            <img id="logo" src="assets/images/bidder-school.png" alt="Bidder Logo" style="max-height: 60px;">
+          </a>
+        </div>
+    
+        <nav class="navbar navbar-expand-md w-100">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li><button class="btn btn-outline-secondary me-3">☰ Category</button></li>
+              <li class="nav-item"><a class="nav-link active" href="index.html">Auctions</a></li>
+              <li class="nav-item"><a class="nav-link" href="./pages/info.html">Information</a></li>
+              <li class="nav-item"><a class="nav-link" href="./pages/create.html">Create a sale</a></li>
+              <!-- login/logout and register/profile buttons here -->
+              <ul id="authButtons" class="navbar-nav"></ul>
+            </ul>
           </div>
-        <div class="b-line-normal"></div>
+        </nav>
+      </div>
+      <div class="b-line-normal"></div>
     </header>
+    
 
 
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"> <!--this is the login form-->
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="loginForm">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form><br>
+                <h6>Dont have a account?</h6>
+                <a href="./pages/register.html" class="btn btn-primary w-100">Register</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
     <footer class="b-footer py-4">
       <div class="text-center">
           <p class="m-0">&copy; 2024 Bidder. All rights reserved.</p>
       </div>
     </footer>
+
   </body>
 </html>
