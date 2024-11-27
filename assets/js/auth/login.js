@@ -11,14 +11,17 @@ async function handleLogin(event) {
     console.log('API response:', userData);
 
     const accessToken = userData?.data?.accessToken;
-    if (accessToken) {
+    const name = userData?.data?.name;
+
+    if (accessToken && name) {
       localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('name', name);
       alert("Login successful!");
       location.reload();
       const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
       if (loginModal) loginModal.hide();
     } else {
-      throw new Error('accessToken not found in API response');
+      throw new Error('accessToken or name not found in API response');
     }
   } catch (error) {
     console.error('Login failed:', error);

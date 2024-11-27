@@ -10,6 +10,8 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./assets/js/auth/login.js"></script>
     <script type="module" src="./assets/js/header.js"></script>
+    <script type="module" src="./assets/js/homePage.js"></script>
+    <script type="module" src="./assets/js/api.js"></script>
   </head>
   <body>
     <header class="border-bottom">
@@ -40,6 +42,19 @@
       </div>
       <div class="b-line-normal"></div>
     </header>
+
+    <div class="container my-5">
+      <h3 class="mb-4">Recently Updated Auctions</h3>
+      <div id="latestListings" class="row"></div>
+    
+      <h3 class="mb-4">Ending Soon</h3>
+      <div id="endingSoonListings" class="row"></div>
+    
+      <h3 class="mb-4">Newest Auctions</h3>
+      <div id="newestListings" class="row"></div>
+    </div>
+    
+    
     
 
 

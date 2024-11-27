@@ -1,0 +1,45 @@
+import { fetchListings, sortByEndingSoon, sortByNewest } from "./api.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const latestRow = document.getElementById("latestListings");
+  const endingSoonRow = document.getElementById("endingSoonListings");
+  const newestRow = document.getElementById("newestListings");
+
+  try {
+    const listings = await fetchListings();
+
+    const latestListings = listings.slice(0, 4);
+    const endingSoonListings = sortByEndingSoon(listings).slice(0, 4);
+    const newestListings = sortByNewest(listings).slice(0, 4);
+
+    renderListings(latestListings, latestRow);
+    renderListings(endingSoonListings, endingSoonRow);
+    renderListings(newestListings, newestRow);
+  } catch (error) {
+    console.error("Error loading listings:", error);
+  }
+});
+
+/**
+ * render a list of auctions
+ * @param {Array} listings 
+ * @param {HTMLElement} container
+ */
+function renderListings(listings, container) {
+  container.innerHTML = listings
+    .map(
+      (listing) => `
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img class="auction-image" src="${listing.media[0]?.url || 'placeholder.jpg'}" class="card-img-top" alt="${listing.title}">
+          <div class="card-body">
+            <h5 class="card-title">${listing.title}</h5>
+            <p class="card-text">Ends: ${new Date(listing.endsAt).toLocaleDateString()}</p>
+            <a href="./pages/auction.html?id=${listing.id}" class="btn btn-primary">View Auction</a>
+          </div>
+        </div>
+      </div>
+    `
+    )
+    .join("");
+}
