@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const authButtonsContainer = document.getElementById('authButtons'); // HUSK: Oppdater HTML med denne ID-en!
+    const authButtonsContainer = document.getElementById('authButtons');
     const accessToken = localStorage.getItem('accessToken');
   
     if (accessToken) {
-      // Brukeren er logget inn
+      // user is logged in
       authButtonsContainer.innerHTML = `
         <li class="nav-item">
           <a class="nav-link text-decoration-none" href="./pages/profile.html">Profile</a>
@@ -13,14 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </li>
       `;
   
-      // Logout-knappens event listener
+      // Logout btn eventlistener
       document.getElementById('logoutButton').addEventListener('click', () => {
         localStorage.removeItem('accessToken');
         alert('You have been logged out.');
+        location.href('/');
         location.reload();
       });
     } else {
-      // Brukeren er ikke logget inn
+      //User not logged in
       authButtonsContainer.innerHTML = `
         <li class="nav-item">
           <a class="nav-link text-decoration-none" href="./pages/register.html">Register</a>
