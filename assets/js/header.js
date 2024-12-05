@@ -1,12 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const authButtonsContainer = document.getElementById('authButtons');
     const accessToken = localStorage.getItem('accessToken');
+
+    const categories = [
+      "Cars",
+      "Car parts",
+      "Moped",
+      "MC",
+      "House",
+      "Furniture",
+      "Market",
+      "Other",
+    ];
+  
+    const categoryButton = document.querySelector(".btn-outline-secondary");
+    const categoryDropdown = document.createElement("ul");
+    categoryDropdown.className = "dropdown-menu";
+  
+    categories.forEach((category) => {
+      const categoryItem = document.createElement("li");
+      categoryItem.innerHTML = `<a class="dropdown-item" href="category.html?category=${encodeURIComponent(category)}">${category}</a> 
+        <div class="b-line-normal"></div>`;
+      categoryDropdown.appendChild(categoryItem);
+    });
+  
+    categoryButton.addEventListener("click", () => {
+      if (categoryDropdown.style.display === "block") {
+        categoryDropdown.style.display = "none";
+      } else {
+        categoryDropdown.style.display = "block";
+      }
+    });
+  
+    categoryButton.parentElement.appendChild(categoryDropdown);
   
     if (accessToken) {
       // user is logged in
       authButtonsContainer.innerHTML = `
         <li class="nav-item">
-          <a class="nav-link text-decoration-none" href="./pages/profile.html">Profile</a>
+          <a class="nav-link text-decoration-none" href="../pages/profile.html">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-decoration-none" id="logoutButton" href="#">Logout</a>

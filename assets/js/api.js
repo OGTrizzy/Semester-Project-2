@@ -1,4 +1,4 @@
-import { API_AUCTION_LISTINGS, API_PROFILE, API_KEY } from "./constants.js";
+import { API_AUCTION_LISTINGS, API_PROFILE, API_KEY, API_AUCTION_CREATE } from "./constants.js";
 
 /**
  * get all listings from api
@@ -113,3 +113,49 @@ export async function updateUserProfile(bio, avatarUrl) {
   }
 }
 
+/**
+ * create new acution
+ * @param {string} title
+ * @param {string} description
+ * @param {string} endsAt
+ * @param {Array} media
+ * @param {Array} tags - categories
+ * @returns {Promise<object>}
+ */
+export async function createAuction(title, description, endsAt, media, tags = []) {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    throw new Error("You must be logged in to create an auction.");
+  }
+
+  const body = {
+    title,
+    description,
+    endsAt,
+    media,
+    tags,
+  };
+
+  try {
+    const response = await fetch(API_AUCTION_CREATE, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": API_KEY,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      throw new Error(`Failed to create auction: ${errorDetails.message || response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error creating auction:", error);
+    throw error;
+  }
+}

@@ -31,11 +31,11 @@ function renderListings(listings, container) {
       (listing) => `
       <div class="col-md-3 mb-4">
         <div class="card">
-          <img class="auction-image" src="${listing.media[0]?.url || 'placeholder.jpg'}" class="card-img-top" alt="${listing.title}">
+          <img class="auction-image" src="${listing.media[0]?.url || ''}" class="card-img-top" alt="${listing.title}">
           <div class="card-body">
             <h5 class="card-title">${listing.title}</h5>
             <p class="card-text">Ends: ${new Date(listing.endsAt).toLocaleDateString()}</p>
-            <a href="./pages/auction.html?id=${listing.id}" class="btn btn-primary">View Auction</a>
+            <a href="./pages/postInfo.html?id=${listing.id}" class="btn btn-primary">View Auction</a>
           </div>
         </div>
       </div>

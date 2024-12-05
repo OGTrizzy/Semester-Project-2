@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../assets/js/auth/login.js"></script>
+    <script type="module" src="../assets/js/header.js"></script>
+    <script type="module" src="../assets/js/api.js"></script>
+    <script type="module" src="../assets/js/createAuction.js"></script>
+  </head>
+  <body>
+    <header class="border-bottom">
+      <div class="b-line-top"></div>
+    
+      <div class="container d-flex align-items-center py-2">
+        <div class="me-3">
+          <a href="../index.html" class="text-decoration-none text-dark">
+            <img id="logo" src="../assets/images/bidder-school.png" alt="Bidder Logo" style="max-height: 60px;">
+          </a>
+        </div>
+    
+        <nav class="navbar navbar-expand-md w-100">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li><button class="btn btn-outline-secondary me-3">☰ Category</button></li>
+              <li class="nav-item"><a class="nav-link" href="../index.html">Auctions</a></li>
+              <li class="nav-item"><a class="nav-link" href="info.html">Information</a></li>
+              <li class="nav-item"><a class="nav-link" href="create.html">Create a sale</a></li>
+              <!-- login/logout and register/profile buttons here -->
+              <ul id="authButtons" class="navbar-nav"></ul>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="b-line-normal"></div>
+    </header> 
+
+
+    <div class="container my-5">
+        <h1 class="text-center mb-5">Welcome to the info page</h1>
+    
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="info-b-color">FAQ</h2>
+            <h3>Frequently Asked Questions</h3>
+            <p>Bidder is a 100% independent company, have a safe and secure payment solution for both buyer and seller.</p>
+            <p>Secure payment is made to our client account at DNB, and settlement is carried out by our settlement department, which currently has 15 employees, of which 3 are auditors.</p>
+            <p>
+              You as a bidder should feel secure when you submit a bid. As a buyer, you always have access to the bid log. The bidders are anonymised, for the sake of the bidders. If you wish to have full access to the bid log, contact one of our employees. IP addresses are registered on all bids.
+            </p>
+          </div>
+
+          <div class="col-md-6">
+            <h2 class="info-b-color">How can I register at Bidder?</h2>
+            <p>Head over to the register page, and follow the instructions.</p>
+    
+            <h2 class="info-b-color">I get an error while registering?</h2>
+            <p>
+              Normally, error messages give information that there is missing contact information in the registration.
+              Remember to confirm with your password. If you continue to receive the same error message, please open a new
+              internet window and try again. Email and password are written consecutively, without spaces or hyphens. The
+              password must be at least 8 characters long.
+            </p>
+    
+            <h2 class="info-b-color">I get a message that my account is blocked?</h2>
+            <p>
+              A blocking of an account is normally due to previous violations of rules and conditions, or that we have
+              incorrect contact information for you. Please send an e-mail to post@bidder.zxc for more information.
+            </p>
+    
+            <h2 class="info-b-color">How old do I have to be to shop at Bidder?</h2>
+            <p>
+              You must be over 18 years of age to participate in auctions on Bidder. We will cancel orders where it appears
+              that the bid has been placed by a person under the age of 18.
+            </p>
+    
+            <h2 class="info-b-color">How do I find out more about an object?</h2>
+            <p>
+              You will find detailed information for each object. For larger and more images, click on the image. You can
+              also read the technical condition report and certification, if the object has this. If you have specific
+              questions about an object, and the information has not been provided, questions can be sent directly to the
+              seller listed in the auction.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"> <!--this is the login form-->
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="loginForm">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form><br>
+                <h6>Dont have a account?</h6>
+                <a href="../pages/register.html" class="btn btn-primary w-100">Register</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+    <footer class="b-footer py-4">
+      <div class="text-center">
+          <p class="m-0">&copy; 2024 Bidder. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
