@@ -1,4 +1,9 @@
-import { API_AUCTION_LISTINGS, API_PROFILE, API_KEY, API_AUCTION_CREATE } from "./constants.js";
+import {
+  API_AUCTION_LISTINGS,
+  API_PROFILE,
+  API_KEY,
+  API_AUCTION_CREATE,
+} from "./constants.js";
 
 /**
  * get all listings from api
@@ -8,7 +13,7 @@ export async function fetchListings() {
   try {
     const response = await fetch(API_AUCTION_LISTINGS);
     if (!response.ok) throw new Error("Failed to fetch auction listings.");
-    
+
     const { data } = await response.json();
     return data;
   } catch (error) {
@@ -19,13 +24,14 @@ export async function fetchListings() {
 
 /**
  * sort by date
- * @param {Array} listings 
+ * @param {Array} listings
  * @returns {Array}
  */
 export function sortByEndingSoon(listings) {
-  return [...listings].sort(
-    (a, b) => new Date(a.endsAt) - new Date(b.endsAt)
+  const activeListings = listings.filter(
+    (listing) => new Date(listing.endsAt) > new Date()
   );
+  return activeListings.sort((a, b) => new Date(a.endsAt) - new Date(b.endsAt));
 }
 
 /**
@@ -47,26 +53,40 @@ export async function getUserProfile() {
   const name = localStorage.getItem("name");
 
   if (!accessToken || !name) {
-      throw new Error("Try logging in again.");
+    throw new Error("Try logging in again.");
   }
 
   const response = await fetch(`${API_PROFILE}/${name}`, {
-      method: "GET",
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`,
-          "X-Noroff-API-Key": API_KEY,
-      },
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "X-Noroff-API-Key": API_KEY,
+    },
   });
 
   if (!response.ok) {
-      throw new Error("Failed to fetch user profile");
+    throw new Error("Failed to fetch user profile");
   }
 
   return await response.json();
 }
 
-  
+/**
+ * gets user wallet balance
+ * @returns {Promise<number>}
+ */
+export async function getUserWallet() {
+  try {
+    const profileData = await getUserProfile();
+    const walletAmount = profileData?.data?.credits || 0;
+    return walletAmount;
+  } catch (error) {
+    console.error("Error fetching wallet balance:", error);
+    throw error;
+  }
+}
+
 /**
  * @param {string} bio
  * @param {string} avatar
@@ -77,39 +97,43 @@ export async function updateUserProfile(bio, avatarUrl) {
   const name = localStorage.getItem("name");
 
   if (!accessToken || !name) {
-      throw new Error("Try logging in igjen.");
+    throw new Error("Try logging in igjen.");
   }
 
   const body = {
-      avatar: {
-          url: avatarUrl || "",
-          alt: "User avatar",
-      },
-      bio: bio || "",
+    avatar: {
+      url: avatarUrl || "",
+      alt: "User avatar",
+    },
+    bio: bio || "",
   };
 
   const profileEndpoint = `${API_PROFILE}/${name}`;
 
   try {
-      const response = await fetch(profileEndpoint, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${accessToken}`,
-              "X-Noroff-API-Key": API_KEY,
-          },
-          body: JSON.stringify(body),
-      });
+    const response = await fetch(profileEndpoint, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": API_KEY,
+      },
+      body: JSON.stringify(body),
+    });
 
-      if (!response.ok) {
-          const errorDetails = await response.json();
-          throw new Error(`Failed to update user profile: ${errorDetails.message || response.statusText}`);
-      }
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      throw new Error(
+        `Failed to update user profile: ${
+          errorDetails.message || response.statusText
+        }`
+      );
+    }
 
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error("Error updating user profile:", error);
-      throw error;
+    console.error("Error updating user profile:", error);
+    throw error;
   }
 }
 
@@ -122,7 +146,13 @@ export async function updateUserProfile(bio, avatarUrl) {
  * @param {Array} tags - categories
  * @returns {Promise<object>}
  */
-export async function createAuction(title, description, endsAt, media, tags = []) {
+export async function createAuction(
+  title,
+  description,
+  endsAt,
+  media,
+  tags = []
+) {
   const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
@@ -150,12 +180,34 @@ export async function createAuction(title, description, endsAt, media, tags = []
 
     if (!response.ok) {
       const errorDetails = await response.json();
-      throw new Error(`Failed to create auction: ${errorDetails.message || response.statusText}`);
+      throw new Error(
+        `Failed to create auction: ${
+          errorDetails.message || response.statusText
+        }`
+      );
     }
 
     return await response.json();
   } catch (error) {
     console.error("Error creating auction:", error);
+    throw error;
+  }
+}
+
+/**
+ * Fetch listings filtered by tag
+ * @param {string} tag - The tag to filter by
+ * @returns {Promise<Array>} - Array of auction listings with the specified tag
+ */
+export async function fetchListingsByTag(tag) {
+  try {
+    const response = await fetch(`${API_AUCTION_LISTINGS}?_tag=${tag}`);
+    if (!response.ok) throw new Error("Failed to fetch filtered listings.");
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching filtered listings:", error);
     throw error;
   }
 }

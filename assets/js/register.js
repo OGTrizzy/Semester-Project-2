@@ -5,7 +5,7 @@ export async function registerUser({ name, email, password }) {
     const body = {
       name,
       email,
-      password
+      password,
     };
 
     const response = await fetch(API_AUTH_REGISTER, {
@@ -22,7 +22,9 @@ export async function registerUser({ name, email, password }) {
     }
 
     const data = await response.json();
-    alert("Registration successful! Redirecting to homepage. You can now log in.");
+    alert(
+      "Registration successful! Redirecting to homepage. You can now log in."
+    );
     window.location.href = "../index.html";
     return data;
   } catch (error) {
@@ -37,7 +39,9 @@ export function onRegister(event) {
   const name = document.getElementById("username").value.trim();
   const email = document.getElementById("reg-email").value.trim();
   const password = document.getElementById("reg-password").value.trim();
-  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  const confirmPassword = document
+    .getElementById("confirmPassword")
+    .value.trim();
 
   if (!name || !email || !password || !confirmPassword) {
     return alert("All fields are required.");

@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     profileImage.src = avatarUrl;
     profileUsername.textContent = name;
     bioInput.value = bioText;
-
   } catch (error) {
     console.error("Error fetching user profile:", error);
     alert("Could not load profile data.");

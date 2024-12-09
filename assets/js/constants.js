@@ -9,7 +9,7 @@ export const API_AUTH_REGISTER = `${API_AUTH}/register`;
 
 export const API_AUCTION = `${API_BASE}/auction`;
 
-export const API_PROFILE = `${API_AUCTION}/profiles` // Get profile
+export const API_PROFILE = `${API_AUCTION}/profiles`; // Get profile
 export const API_AUCTION_LISTINGS = `${API_AUCTION}/listings`; // Get all auction listings
 export const API_AUCTION_SINGLE = (id) => `${API_AUCTION}/listings/${id}`; // Get a single auction by ID
 export const API_AUCTION_BIDS = (id) => `${API_AUCTION}/listings/${id}/bids`; // Get bids for a specific auction

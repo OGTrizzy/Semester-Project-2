@@ -1,4 +1,4 @@
-import { createAuction } from "./api.js";
+import { createAuction, fetchListings } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const createAuctionForm = document.getElementById("createAuctionForm");
@@ -7,11 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const title = document.getElementById("auctionTitle").value.trim();
-    const imageUrl = document.querySelector('input[placeholder="Image URL 1"]').value.trim();
-    const imageAlt = document.querySelector('input[placeholder="Image ALT text"]').value.trim();
+    const imageUrl = document
+      .querySelector('input[placeholder="Image URL 1"]')
+      .value.trim();
+    const imageAlt = document
+      .querySelector('input[placeholder="Image ALT text"]')
+      .value.trim();
     const category = document.querySelector(".form-select").value.trim();
-    const endsAt = document.querySelector('input[type="datetime-local"]').value.trim();
-    const description = document.querySelector('textarea[placeholder="Enter a description"]').value.trim();
+    const endsAt = document
+      .querySelector('input[type="datetime-local"]')
+      .value.trim();
+    const description = document
+      .querySelector('textarea[placeholder="Enter a description"]')
+      .value.trim();
 
     if (!title || !imageUrl || !endsAt || !description) {
       alert("Please fill in all required fields.");
@@ -22,9 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tags = category ? [category] : [];
 
     try {
-      const newAuction = await createAuction(title, description, endsAt, media, tags);
+      const newAuction = await createAuction(
+        title,
+        description,
+        endsAt,
+        media,
+        tags
+      );
       alert("Auction created successfully!");
-      console.log("Created auction:", newAuction);
       createAuctionForm.reset();
     } catch (error) {
       console.error("Error creating auction:", error);

@@ -11849,18 +11849,30 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+h1, .h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
   font-family: "Lato", sans-serif;
 }
 
 header {
-  background-color: #F6F7EB;
+  background-color: #f6f7eb;
 }
 
-.b-line-top, .b-line-normal, .b-footer {
+.b-line-top,
+.b-line-normal,
+.b-footer {
   min-width: 100%;
   width: 100%;
-  background-color: #3F88C5;
+  background-color: #3f88c5;
 }
 
 .b-line-top {
@@ -11885,7 +11897,7 @@ header {
   transition: color 0.4s ease;
 }
 .nav-link:hover, .nav-link.active {
-  color: #FF7A59 !important;
+  color: #ff7a59 !important;
 }
 .nav-link::after {
   content: "";
@@ -11894,7 +11906,7 @@ header {
   left: 50%;
   width: 0%;
   height: 2px;
-  background-color: #FF7A59;
+  background-color: #ff7a59;
   transition: all 0.4s ease;
   transform: translateX(-50%);
 }
@@ -11902,15 +11914,18 @@ header {
   width: 50%;
 }
 
-.custom-register, .info-b-color {
-  color: #3F88C5 !important;
+.custom-register,
+.info-b-color {
+  color: #3f88c5 !important;
 }
 
-.custom-login, .custom-register {
+.custom-login,
+.custom-register {
   font-weight: bold;
 }
 
-.placeholder-img, .auction-image {
+.placeholder-img,
+.auction-image {
   height: 200px;
   min-width: 100%;
   object-fit: cover;
