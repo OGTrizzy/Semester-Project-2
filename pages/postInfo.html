@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create</title>
+    <title>Post Info</title>
     <link
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -17,7 +17,7 @@
     <script type="module" src="../assets/js/auth/login.js"></script>
     <script type="module" src="../assets/js/header.js"></script>
     <script type="module" src="../assets/js/api.js"></script>
-    <script type="module" src="../assets/js/createAuction.js"></script>
+    <script type="module" src="../assets/js/postInfo.js"></script>
   </head>
   <body>
     <header class="border-bottom">
@@ -71,6 +71,57 @@
       </div>
       <div class="b-line-normal"></div>
     </header>
+
+    <main class="container mt-4">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="mb-3">
+            <img
+              id="main-image"
+              class="img-fluid border auction-info-image"
+              src=""
+              alt="Auction Item"
+            />
+          </div>
+          <h2 id="item-title"></h2>
+          <h5 id="item-description" class="text-muted">Description</h5>
+          <p id="item-details"></p>
+          <p id="item-condition"></p>
+          <ul id="item-info-list"></ul>
+        </div>
+
+        <div class="col-md-4">
+          <div class="border p-3">
+            <h5>Highest bid</h5>
+            <p id="highest-bid" class="fw-bold">0</p>
+            <form id="bid-form">
+              <label for="bid-amount" class="form-label">Next bid:</label>
+              <input
+                type="number"
+                id="bid-amount"
+                class="form-control mb-2"
+                value="10"
+                required
+              />
+              <button type="submit" class="btn btn-success w-100">
+                Bid now
+              </button>
+            </form>
+            <p class="text-muted mt-2">Price may change before making a bid</p>
+          </div>
+          <div class="border p-3 mt-3">
+            <p><strong>Ends in:</strong> <span id="time-remaining"></span></p>
+            <p><strong>Ends:</strong> <span id="ends-at"></span></p>
+          </div>
+          <div class="border p-3 mt-3">
+            <h5>Contact Info</h5>
+            <p id="seller-name"></p>
+            <p id="seller-email"></p>
+            <p id="seller-phone"></p>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <div
       class="modal fade"

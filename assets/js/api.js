@@ -3,6 +3,7 @@ import {
   API_PROFILE,
   API_KEY,
   API_AUCTION_CREATE,
+  API_AUCTION_SINGLE,
 } from "./constants.js";
 
 /**
@@ -208,6 +209,26 @@ export async function fetchListingsByTag(tag) {
     return data;
   } catch (error) {
     console.error("Error fetching filtered listings:", error);
+    throw error;
+  }
+}
+
+/**
+ * get details id
+ * @param {string} id
+ * @returns {Promise<object>}
+ */
+export async function fetchAuctionById(id) {
+  try {
+    const response = await fetch(API_AUCTION_SINGLE(id));
+    if (!response.ok) {
+      throw new Error("Failed to fetch post details.");
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching post details:", error);
     throw error;
   }
 }

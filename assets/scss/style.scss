@@ -86,10 +86,20 @@ header {
 }
 
 .placeholder-img,
-.auction-image {
-  height: 200px;
-  min-width: 100%;
+.auction-image,
+.auction-info-image {
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
+}
+
+.placeholder-img,
+.auction-image {
+  height: 200px;
+  min-width: 100%;
+}
+
+.auction-info-image {
+  height: 500px;
+  width: 100%;
 }
