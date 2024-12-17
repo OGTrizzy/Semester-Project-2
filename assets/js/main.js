@@ -1,14 +1,14 @@
 const currentPage = window.location.pathname.split("/").pop();
 
 switch (currentPage) {
-  case "index.html":
+  case "/Semester-Project-2/index.html":
     import("./homePage.js");
     import("./header.js");
     import("./auth/login.js");
     import("./api.js");
     break;
 
-  case "category.html":
+  case "/Semester-Project-2/category.html":
     import("./category.js")
       .then((module) => {
         module.initCategoryPage();
@@ -21,34 +21,34 @@ switch (currentPage) {
     import("./auth/login.js");
     break;
 
-  case "create.html":
+  case "/Semester-Project-2/create.html":
     import("./createAuction.js");
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "postInfo.html":
+  case "/Semester-Project-2/postInfo.html":
     import("/postInfo.js");
     import("./api.js");
     import("./header.js");
     import("./auth/login.js");
     break;
 
-  case "profile.html":
+  case "/Semester-Project-2/profile.html":
     import("./profile.js");
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "register.html":
+  case "/Semester-Project-2/register.html":
     import("./register.js");
     import("./auth/login.js");
     import("./header.js");
     break;
 
-  case "info.html":
+  case "/Semester-Project-2/info.html":
     import("./api.js");
     import("./header.js");
     import("./auth/login.js");
