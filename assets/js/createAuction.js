@@ -6,7 +6,7 @@ export function initCreateAuctionPage() {
   });
 }
 
-function setupCreateAuctionForm() {
+export function setupCreateAuctionForm() {
   const createAuctionForm = document.getElementById("createAuctionForm");
 
   createAuctionForm.addEventListener("submit", async (event) => {
@@ -45,5 +45,3 @@ function setupCreateAuctionForm() {
     }
   });
 }
-
-export default initCreateAuctionPage;
