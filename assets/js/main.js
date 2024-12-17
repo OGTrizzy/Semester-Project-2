@@ -23,7 +23,10 @@ switch (currentPage) {
 
   case "create.html":
     import("./createAuction.js")
-      .then((module) => module.initCreateAuctionPage())
+      .then((module) => {
+        console.log("imported createAuction.js");
+        module.initCreateAuctionPage();
+      })
       .catch((error) =>
         console.error("Failed to load createAuction script", error)
       );
@@ -34,7 +37,10 @@ switch (currentPage) {
 
   case "postInfo.html":
     import("./postInfo.js")
-      .then((module) => module.initAuctionDetailsPage())
+      .then((module) => {
+        console.log("imported postInfo.js");
+        module.initAuctionDetailsPage();
+      })
       .catch((error) => console.error("Failed to load postInfo script", error));
     import("./header.js");
     import("./api.js");
