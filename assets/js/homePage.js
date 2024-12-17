@@ -2,7 +2,7 @@ import { fetchListings, sortByEndingSoon, sortByNewest } from "./api.js";
 import { calculateHighestBid } from "./highestBid.js";
 
 export async function initHomePage() {
-  console.log("hi4");
+  console.log("hi5");
   const latestRow = document.getElementById("latestListings");
   const endingSoonRow = document.getElementById("endingSoonListings");
   const newestRow = document.getElementById("newestListings");
