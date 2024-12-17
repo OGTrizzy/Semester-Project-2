@@ -1,6 +1,7 @@
 import { loginUser } from "./auth.js";
 
 export async function handleLogin(event) {
+  console.log("this is login");
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();

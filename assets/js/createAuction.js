@@ -1,6 +1,7 @@
 import { createAuction } from "./api.js";
 
 export function initCreateAuctionPage() {
+  console.log("this is create auction");
   document.addEventListener("DOMContentLoaded", () => {
     setupCreateAuctionForm();
   });
