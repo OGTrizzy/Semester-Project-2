@@ -27,7 +27,7 @@ export function initAuctionDetailsPage() {
  * displays auction details on the page
  * @param {object} post
  */
-function displayAuctionDetails(post) {
+export function displayAuctionDetails(post) {
   const mainImage = document.getElementById("main-image");
   mainImage.src = post.data.media[0]?.url || "";
   mainImage.alt = post.data.media[0]?.alt || "Auction Item";
@@ -52,7 +52,7 @@ function displayAuctionDetails(post) {
  * sets up the form to submit bids
  * @param {string} postId
  */
-function setupBidForm(postId) {
+export function setupBidForm(postId) {
   const bidForm = document.getElementById("bid-form");
   bidForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -75,7 +75,7 @@ function setupBidForm(postId) {
  * sets up the button to view bids
  * @param {object} post
  */
-function setupViewBidsButton(post) {
+export function setupViewBidsButton(post) {
   const viewBidsBtn = document.getElementById("view-bids-btn");
   const bidCount = post.data._count.bids || 0;
   viewBidsBtn.textContent = `${bidCount} bids`;
@@ -92,7 +92,7 @@ function setupViewBidsButton(post) {
  * @param {Date} endsAt
  * @returns {string}
  */
-function calculateTimeRemaining(endsAt) {
+export function calculateTimeRemaining(endsAt) {
   const timeRemaining = Math.max(0, endsAt - Date.now());
   const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
@@ -107,7 +107,7 @@ function calculateTimeRemaining(endsAt) {
  * renders a list of bids
  * @param {Array} bids
  */
-function renderBidsList(bids) {
+export function renderBidsList(bids) {
   const bidsList = document.getElementById("bids-list");
   bidsList.innerHTML = "";
 
@@ -144,5 +144,3 @@ function renderBidsList(bids) {
     bidsList.appendChild(listItem);
   });
 }
-
-export default initAuctionDetailsPage;
