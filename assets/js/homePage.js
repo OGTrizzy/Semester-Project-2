@@ -2,7 +2,7 @@ import { fetchListings, sortByEndingSoon, sortByNewest } from "./api.js";
 import { calculateHighestBid } from "./highestBid.js";
 
 export async function initHomePage() {
-  console.log("hi7");
+  console.log("hi");
   const latestRow = document.getElementById("latestListings");
   const endingSoonRow = document.getElementById("endingSoonListings");
   const newestRow = document.getElementById("newestListings");
@@ -46,7 +46,7 @@ export function renderListings(listings, container) {
           <div class="card auction-post-styles">
             <img class="auction-image" src="${
               listing.media[0]?.url ||
-              "../assets/images/placeholder-image-person-jpg.jpg"
+              "/Semester-Project-2/assets/images/placeholder-image-person-jpg.jpg"
             }" class="card-img-top" alt="${listing.title}">
             <div class="card-body">
               <h5 class="card-title">${listing.title}</h5>
