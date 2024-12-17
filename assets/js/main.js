@@ -1,56 +1,58 @@
-const currentPage = window.location.pathname.split("/").pop();
+let currentPage = window.location.pathname.split("/").pop();
+
+if (!currentPage) {
+  currentPage = "index.html";
+}
+
+console.log("Current Page:", currentPage);
 
 switch (currentPage) {
-  case "/Semester-Project-2/index.html":
+  case "index.html":
     import("./homePage.js");
     import("./header.js");
     import("./auth/login.js");
     import("./api.js");
     break;
 
-  case "/Semester-Project-2/category.html":
+  case "category.html":
     import("./category.js")
-      .then((module) => {
-        module.initCategoryPage();
-      })
-      .catch((error) => {
-        console.error("failed to load category", error);
-      });
+      .then((module) => module.initCategoryPage())
+      .catch((error) => console.error("Failed to load category script", error));
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "/Semester-Project-2/create.html":
+  case "create.html":
     import("./createAuction.js");
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "/Semester-Project-2/postInfo.html":
-    import("/postInfo.js");
-    import("./api.js");
+  case "postInfo.html":
+    import("./postInfo.js");
     import("./header.js");
+    import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "/Semester-Project-2/profile.html":
+  case "profile.html":
     import("./profile.js");
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
     break;
 
-  case "/Semester-Project-2/register.html":
+  case "register.html":
     import("./register.js");
-    import("./auth/login.js");
     import("./header.js");
+    import("./auth/login.js");
     break;
 
-  case "/Semester-Project-2/info.html":
-    import("./api.js");
+  case "info.html":
     import("./header.js");
+    import("./api.js");
     import("./auth/login.js");
     break;
 
