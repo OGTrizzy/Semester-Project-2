@@ -22,7 +22,11 @@ switch (currentPage) {
     break;
 
   case "create.html":
-    import("./createAuction.js");
+    import("./createAuction.js")
+      .then((module) => module.initCreateAuctionPage())
+      .catch((error) =>
+        console.error("Failed to load createAuction script", error)
+      );
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
