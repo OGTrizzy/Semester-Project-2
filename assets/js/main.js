@@ -4,8 +4,6 @@ if (!currentPage) {
   currentPage = "index.html";
 }
 
-console.log("Current Page:", currentPage);
-
 switch (currentPage) {
   case "index.html":
     import("./homePage.js");
@@ -57,6 +55,6 @@ switch (currentPage) {
     break;
 
   default:
-    console.warn("No scripts configured for this page:", "test", currentPage);
+    console.warn("No scripts configured for this page:", currentPage);
     break;
 }
