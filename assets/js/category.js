@@ -1,39 +1,62 @@
 import { fetchListingsByTag } from "./api.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+export function initCategoryPage() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", handleCategoryPageLoad);
+  } else {
+    handleCategoryPageLoad();
+  }
+}
+
+/**
+ * handles the rendering of auctions
+ */
+async function handleCategoryPageLoad() {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category");
+
   const categoryContainer = document.getElementById("categoryListings");
   const categoryTitle = document.getElementById("categoryTitle");
 
-  if (category) {
-    categoryTitle.textContent = category;
-  } else {
-    categoryTitle.textContent = "Unknown Category"; //this is nice to have in case of anything
-  }
-
   if (!category) {
     console.error("No category specified in the URL.");
-    categoryContainer.innerHTML = "<p>No category selected.</p>";
+    displayMessage(categoryContainer, "No category selected.");
     return;
   }
+
+  categoryTitle.textContent = category;
 
   try {
     const filteredListings = await fetchListingsByTag(category);
 
-    if (filteredListings.length === 0) {
-      categoryContainer.innerHTML = `<p>No listings found for category: ${category}</p>`;
+    if (!filteredListings || filteredListings.length === 0) {
+      displayMessage(
+        categoryContainer,
+        `No listings found for category: ${category}`
+      );
     } else {
       renderListings(filteredListings, categoryContainer);
     }
   } catch (error) {
     console.error("Error loading filtered listings:", error);
-    categoryContainer.innerHTML = `<p>Error loading listings for category: ${category}</p>`;
+    displayMessage(
+      categoryContainer,
+      `Error loading listings for category: ${category}`
+    );
   }
-});
+}
 
 /**
- * get a list of auctions
+ * displays messages in specific container
+ * @param {HTMLElement} container
+ * @param {string} message
+ */
+function displayMessage(container, message) {
+  container.innerHTML = `<p>${message}</p>`;
+}
+
+/**
+ * render the filtered listings in the container
  * @param {Array} listings
  * @param {HTMLElement} container
  */
@@ -41,11 +64,15 @@ function renderListings(listings, container) {
   container.innerHTML = listings
     .map(
       (listing) => `
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img class="auction-image" src="${
-            listing.media[0]?.url || ""
-          }" class="card-img-top" alt="${listing.title}">
+      <div class="col-md-3 mb-4 m-h-300">
+        <div class="card auction-post-styles">
+          <img 
+            class="auction-image card-img-top" 
+            src="${
+              listing.media[0]?.url ||
+              "../assets/images/placeholder-image-person-jpg.jpg"
+            }" 
+            alt="${listing.title}">
           <div class="card-body">
             <h5 class="card-title">${listing.title}</h5>
             <p class="card-text">Ends: ${new Date(
@@ -61,3 +88,7 @@ function renderListings(listings, container) {
     )
     .join("");
 }
+
+initCategoryPage();
+
+export { handleCategoryPageLoad, displayMessage, renderListings };

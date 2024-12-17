@@ -1,6 +1,12 @@
-import { createAuction, fetchListings } from "./api.js";
+import { createAuction } from "./api.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+export function initCreateAuctionPage() {
+  document.addEventListener("DOMContentLoaded", () => {
+    setupCreateAuctionForm();
+  });
+}
+
+function setupCreateAuctionForm() {
   const createAuctionForm = document.getElementById("createAuctionForm");
 
   createAuctionForm.addEventListener("submit", async (event) => {
@@ -30,13 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tags = category ? [category] : [];
 
     try {
-      const newAuction = await createAuction(
-        title,
-        description,
-        endsAt,
-        media,
-        tags
-      );
+      await createAuction(title, description, endsAt, media, tags);
       alert("Auction created successfully!");
       createAuctionForm.reset();
     } catch (error) {
@@ -44,4 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("An error occurred while creating the auction. Please try again.");
     }
   });
-});
+}
+
+export default initCreateAuctionPage;

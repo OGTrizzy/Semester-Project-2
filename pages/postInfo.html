@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post Info</title>
     <link
+      rel="icon"
+      href="../assets/images/bidder-school.png"
+      type="image/png"
+    />
+    <link
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
@@ -14,12 +19,9 @@
       rel="stylesheet"
     />
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../assets/js/auth/login.js"></script>
-    <script type="module" src="../assets/js/header.js"></script>
-    <script type="module" src="../assets/js/api.js"></script>
-    <script type="module" src="../assets/js/postInfo.js"></script>
+    <script src="../assets/js/main.js" type="module"></script>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header class="border-bottom">
       <div class="b-line-top"></div>
 
@@ -108,6 +110,9 @@
               </button>
             </form>
             <p class="text-muted mt-2">Price may change before making a bid</p>
+            <button id="view-bids-btn" class="btn btn-primary w-100">
+              0 bids
+            </button>
           </div>
           <div class="border p-3 mt-3">
             <p><strong>Ends in:</strong> <span id="time-remaining"></span></p>
@@ -122,6 +127,42 @@
         </div>
       </div>
     </main>
+
+    <div
+      class="modal fade"
+      id="bidsModal"
+      tabindex="-1"
+      aria-labelledby="bidsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bidsModalLabel">Bids</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul id="bids-list" class="list-group">
+              <!-- bids will be here -->
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div
       class="modal fade"

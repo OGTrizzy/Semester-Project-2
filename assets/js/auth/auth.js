@@ -1,11 +1,5 @@
 import { API_AUTH_LOGIN, API_AUTH_REGISTER } from "../constants.js";
 
-/**
- * Function to handle user login
- * @param {string} email - User email
- * @param {string} password - User password
- * @returns {Promise<object>} - Response data or error
- */
 export async function loginUser(email, password) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
@@ -19,21 +13,13 @@ export async function loginUser(email, password) {
       throw new Error(errorData.message || "Login failed");
     }
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error("Login Error:", error);
     throw error;
   }
 }
 
-/**
- * Function to handle user registration
- * @param {string} name - User full name
- * @param {string} email - User email
- * @param {string} password - User password
- * @returns {Promise<object>} - Response data or error
- */
 export async function registerUser(name, email, password) {
   try {
     const response = await fetch(API_AUTH_REGISTER, {
@@ -46,10 +32,9 @@ export async function registerUser(name, email, password) {
       throw new Error("Failed to register. Please check your input.");
     }
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error("Registration Error:", error);
     throw error;
   }
 }

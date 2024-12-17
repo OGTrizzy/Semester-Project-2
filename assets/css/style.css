@@ -11943,4 +11943,27 @@ header {
   width: 100%;
 }
 
+.auction-post-styles {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.auction-post-styles:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.m-h-300 {
+  min-height: 400px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,6 @@
 import { loginUser } from "./auth.js";
 
-async function handleLogin(event) {
+export async function handleLogin(event) {
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -31,4 +31,12 @@ async function handleLogin(event) {
   }
 }
 
-document.getElementById("loginForm").addEventListener("submit", handleLogin);
+export function initLoginForm() {
+  document.getElementById("loginForm").addEventListener("submit", handleLogin);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initLoginForm);
+} else {
+  initLoginForm();
+}

@@ -1,6 +1,6 @@
-import { getUserWallet } from "./api.js"; // Importer getUserWallet fra api.js
+import { getUserWallet } from "./api.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+export async function initHeader() {
   const authButtonsContainer = document.getElementById("authButtons");
   const accessToken = localStorage.getItem("accessToken");
 
@@ -21,48 +21,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   categories.forEach((category) => {
     const categoryItem = document.createElement("li");
-    categoryItem.innerHTML = `<a class="dropdown-item" href="../pages/category.html?category=${encodeURIComponent(
-      category
-    )}">${category}</a> 
-        <div class="b-line-normal"></div>`;
+    categoryItem.innerHTML = `
+      <a class="dropdown-item" href="../pages/category.html?category=${encodeURIComponent(
+        category
+      )}">${category}</a>
+      <div class="b-line-normal"></div>
+    `;
     categoryDropdown.appendChild(categoryItem);
   });
 
   categoryButton.addEventListener("click", () => {
-    if (categoryDropdown.style.display === "block") {
-      categoryDropdown.style.display = "none";
-    } else {
-      categoryDropdown.style.display = "block";
-    }
+    categoryDropdown.style.display =
+      categoryDropdown.style.display === "block" ? "none" : "block";
   });
 
   categoryButton.parentElement.appendChild(categoryDropdown);
 
   if (accessToken) {
-    // user is logged in
     const username = localStorage.getItem("name");
     if (username) {
       try {
         const walletAmount = await getUserWallet();
         authButtonsContainer.innerHTML = `
-            <li class="nav-item">
-              <a class="nav-link text-decoration-none" href="../pages/profile.html">Profile</a>
-            </li>
-            <li class="nav-item">
-              <p class="nav-link text-decoration-none">
-                Wallet: ${walletAmount} NOK
-              </p>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-decoration-none" id="logoutButton" href="#">Logout</a>
-            </li>
-          `;
+          <li class="nav-item">
+            <a class="nav-link text-decoration-none" href="../pages/profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link text-decoration-none">
+              Wallet: ${walletAmount} NOK
+            </p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-decoration-none" id="logoutButton" href="#">Logout</a>
+          </li>
+        `;
       } catch (error) {
         console.error("Failed to fetch wallet data:", error);
       }
     }
 
-    // Logout btn eventlistener
     document.getElementById("logoutButton").addEventListener("click", () => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("name");
@@ -71,7 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       location.reload();
     });
   } else {
-    // User not logged in
     authButtonsContainer.innerHTML = `
       <li class="nav-item">
         <a class="nav-link text-decoration-none" href="./pages/register.html">Register</a>
@@ -81,4 +77,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       </li>
     `;
   }
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHeader);
+} else {
+  initHeader();
+}

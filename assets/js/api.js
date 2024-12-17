@@ -4,6 +4,7 @@ import {
   API_KEY,
   API_AUCTION_CREATE,
   API_AUCTION_SINGLE,
+  API_AUCTION_BIDS,
 } from "./constants.js";
 
 /**
@@ -12,7 +13,7 @@ import {
  */
 export async function fetchListings() {
   try {
-    const response = await fetch(API_AUCTION_LISTINGS);
+    const response = await fetch(API_AUCTION_LISTINGS + "?_bids=true");
     if (!response.ok) throw new Error("Failed to fetch auction listings.");
 
     const { data } = await response.json();
@@ -98,7 +99,7 @@ export async function updateUserProfile(bio, avatarUrl) {
   const name = localStorage.getItem("name");
 
   if (!accessToken || !name) {
-    throw new Error("Try logging in igjen.");
+    throw new Error("Try logging in again.");
   }
 
   const body = {
@@ -220,7 +221,8 @@ export async function fetchListingsByTag(tag) {
  */
 export async function fetchAuctionById(id) {
   try {
-    const response = await fetch(API_AUCTION_SINGLE(id));
+    const url = API_AUCTION_SINGLE(id) + "?_bids=true";
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Failed to fetch post details.");
     }
@@ -229,6 +231,48 @@ export async function fetchAuctionById(id) {
     return result;
   } catch (error) {
     console.error("Error fetching post details:", error);
+    throw error;
+  }
+}
+
+/**
+ * place a bid on auction
+ * @param {string} listingId
+ * @param {number} bidAmount
+ * @returns {Promise<object>}
+ */
+export async function placeBid(listingId, bidAmount) {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    throw new Error("You must be logged in to place a bid.");
+  }
+
+  const body = {
+    amount: bidAmount,
+  };
+
+  try {
+    const response = await fetch(API_AUCTION_BIDS(listingId), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": API_KEY,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      throw new Error(
+        `Failed to place bid: ${errorDetails.message || response.statusText}`
+      );
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error placing bid:", error);
     throw error;
   }
 }
