@@ -22,7 +22,7 @@ export async function initHeader() {
   categories.forEach((category) => {
     const categoryItem = document.createElement("li");
     categoryItem.innerHTML = `
-      <a class="dropdown-item" href="../pages/category.html?category=${encodeURIComponent(
+      <a class="dropdown-item" href="/Semester-Project-2/pages/category.html?category=${encodeURIComponent(
         category
       )}">${category}</a>
       <div class="b-line-normal"></div>
@@ -70,7 +70,7 @@ export async function initHeader() {
   } else {
     authButtonsContainer.innerHTML = `
       <li class="nav-item">
-        <a class="nav-link text-decoration-none" href="./pages/register.html">Register</a>
+        <a class="nav-link text-decoration-none" href="/Semester-Project-2/pages/register.html">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>

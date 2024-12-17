@@ -36,6 +36,7 @@ export function setupCreateAuctionForm() {
     const tags = category ? [category] : [];
 
     try {
+      console.log("created this:", { title, description, endsAt, media, tags });
       await createAuction(title, description, endsAt, media, tags);
       alert("Auction created successfully!");
       createAuctionForm.reset();
