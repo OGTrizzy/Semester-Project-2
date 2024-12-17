@@ -57,6 +57,6 @@ switch (currentPage) {
     break;
 
   default:
-    console.warn("No scripts configured for this page:", currentPage);
+    console.warn("No scripts configured for this page:", "test", currentPage);
     break;
 }
