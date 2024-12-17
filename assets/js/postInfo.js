@@ -2,26 +2,23 @@ import { fetchAuctionById } from "./api.js";
 import { addBid } from "./bidding.js";
 import { calculateHighestBid } from "./highestBid.js";
 
-export function initAuctionDetailsPage() {
-  document.addEventListener("DOMContentLoaded", async () => {
-    console.log("post id");
-    const params = new URLSearchParams(window.location.search);
-    const postId = params.get("id");
+export async function initAuctionDetailsPage() {
+  const params = new URLSearchParams(window.location.search);
+  const postId = params.get("id");
 
-    if (!postId) {
-      console.error("No post ID provided in URL");
-      return;
-    }
+  if (!postId) {
+    console.error("No post ID provided in URL");
+    return;
+  }
 
-    try {
-      const post = await fetchAuctionById(postId);
-      displayAuctionDetails(post);
-      setupBidForm(postId);
-      setupViewBidsButton(post);
-    } catch (error) {
-      console.error("Failed to load post details:", error);
-    }
-  });
+  try {
+    const post = await fetchAuctionById(postId);
+    displayAuctionDetails(post);
+    setupBidForm(postId);
+    setupViewBidsButton(post);
+  } catch (error) {
+    console.error("Failed to load post details:", error);
+  }
 }
 
 /**
@@ -144,4 +141,12 @@ export function renderBidsList(bids) {
     listItem.appendChild(bidTime);
     bidsList.appendChild(listItem);
   });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initAuctionDetailsPage();
+  });
+} else {
+  initAuctionDetailsPage();
 }
