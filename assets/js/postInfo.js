@@ -145,11 +145,3 @@ export function renderBidsList(bids) {
     bidsList.appendChild(listItem);
   });
 }
-export {
-  initAuctionDetailsPage,
-  renderBidsList,
-  calculateTimeRemaining,
-  setupBidForm,
-  setupViewBidsButton,
-  displayAuctionDetails,
-};

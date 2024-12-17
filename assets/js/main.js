@@ -29,7 +29,9 @@ switch (currentPage) {
     break;
 
   case "postInfo.html":
-    import("./postInfo.js");
+    import("./postInfo.js")
+      .then((module) => module.initAuctionDetailsPage())
+      .catch((error) => console.error("Failed to load postInfo script", error));
     import("./header.js");
     import("./api.js");
     import("./auth/login.js");
