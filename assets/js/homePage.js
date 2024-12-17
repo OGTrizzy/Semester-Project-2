@@ -64,11 +64,3 @@ export function renderListings(listings, container) {
     })
     .join("");
 }
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initHomePage();
-  });
-} else {
-  initHomePage();
-}
