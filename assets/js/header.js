@@ -44,7 +44,7 @@ export async function initHeader() {
         const walletAmount = await getUserWallet();
         authButtonsContainer.innerHTML = `
           <li class="nav-item">
-            <a class="nav-link text-decoration-none" href="../profile.html">Profile</a>
+            <a class="nav-link text-decoration-none" href="/Semester-Project-2/pages/profile.html">Profile</a>
           </li>
           <li class="nav-item">
             <p class="nav-link text-decoration-none">
