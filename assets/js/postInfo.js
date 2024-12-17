@@ -151,11 +151,3 @@ export function renderBidsList(bids) {
     bidsList.appendChild(listItem);
   });
 }
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initAuctionDetailsPage();
-  });
-} else {
-  initAuctionDetailsPage();
-}
