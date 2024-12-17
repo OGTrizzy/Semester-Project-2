@@ -6,63 +6,59 @@ if (!currentPage) {
 
 switch (currentPage) {
   case "index.html":
-    import("./homePage.js");
-    import("./header.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
-    import("./api.js");
+    import("./homePage.js")
+      .then((module) => module.initHomePage?.())
+      .catch((error) => console.error("Failed to load homePage script", error));
     break;
 
   case "category.html":
-    import("./category.js")
-      .then((module) => module.initCategoryPage())
-      .catch((error) => console.error("Failed to load category script", error));
-    import("./header.js");
-    import("./api.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
+    import("./category.js")
+      .then((module) => module.initCategoryPage?.())
+      .catch((error) =>
+        console.error("Failed to load categoryPage script", error)
+      );
     break;
 
   case "create.html":
+    import("./header.js").then((module) => module.initHeader?.());
+    import("./auth/login.js");
     import("./createAuction.js")
-      .then((module) => {
-        console.log("imported createAuction.js");
-        module.initCreateAuctionPage();
-      })
+      .then((module) => module.initCreateAuctionPage?.())
       .catch((error) =>
         console.error("Failed to load createAuction script", error)
       );
-    import("./header.js");
-    import("./api.js");
-    import("./auth/login.js");
     break;
 
   case "postInfo.html":
-    import("./postInfo.js")
-      .then((module) => {
-        console.log("imported postInfo.js");
-        module.initAuctionDetailsPage();
-      })
-      .catch((error) => console.error("Failed to load postInfo script", error));
-    import("./header.js");
-    import("./api.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
+    import("./postInfo.js")
+      .then((module) => module.initAuctionDetailsPage?.())
+      .catch((error) => console.error("Failed to load postInfo script", error));
     break;
 
   case "profile.html":
-    import("./profile.js");
-    import("./header.js");
-    import("./api.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
+    import("./profile.js")
+      .then((module) => module.initProfilePage?.())
+      .catch((error) => console.error("Failed to load profile script", error));
     break;
 
   case "register.html":
-    import("./register.js");
-    import("./header.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
+    import("./register.js")
+      .then((module) => module.initRegisterPage?.())
+      .catch((error) => console.error("Failed to load register script", error));
     break;
 
   case "info.html":
-    import("./header.js");
-    import("./api.js");
+    import("./header.js").then((module) => module.initHeader?.());
     import("./auth/login.js");
     break;
 

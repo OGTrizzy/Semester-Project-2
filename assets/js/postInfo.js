@@ -82,6 +82,15 @@ export function setupViewBidsButton(post) {
     renderBidsList(post.data.bids);
     const bidsModal = new bootstrap.Modal(document.getElementById("bidsModal"));
     bidsModal.show();
+
+    const bidsModalElement = document.getElementById("bidsModal");
+    bidsModalElement.addEventListener("hidden.bs.modal", () => {
+      document.body.classList.remove("modal-open");
+      const backdrop = document.querySelector(".modal-backdrop");
+      if (backdrop) {
+        backdrop.remove();
+      }
+    });
   });
 }
 
