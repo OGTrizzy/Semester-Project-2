@@ -13,7 +13,6 @@ export async function addBid(listingId, bidAmount) {
 
   try {
     await placeBid(listingId, bidAmount);
-    console.log("Bid placed successfully");
     return true;
   } catch (error) {
     console.error("Failed to place bid:", error);

@@ -1,7 +1,6 @@
 import { createAuction } from "./api.js";
 
 export function initCreateAuctionPage() {
-  console.log("this is create auction111");
   setupCreateAuctionForm();
 }
 
@@ -15,7 +14,6 @@ export function setupCreateAuctionForm() {
 
   createAuctionForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log("Form submission event triggered");
 
     const title = document.getElementById("auctionTitle")?.value.trim();
     const imageUrl = document
@@ -41,13 +39,6 @@ export function setupCreateAuctionForm() {
     const tags = category ? [category] : [];
 
     try {
-      console.log("Creating auction with data:", {
-        title,
-        description,
-        endsAt,
-        media,
-        tags,
-      });
       await createAuction(title, description, endsAt, media, tags);
       alert("Auction created successfully!");
       createAuctionForm.reset();

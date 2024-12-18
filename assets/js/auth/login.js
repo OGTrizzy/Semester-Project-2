@@ -1,7 +1,6 @@
 import { loginUser } from "./auth.js";
 
 export async function handleLogin(event) {
-  console.log("this is login");
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -9,7 +8,6 @@ export async function handleLogin(event) {
 
   try {
     const userData = await loginUser(email, password);
-    console.log("API response:", userData);
 
     const accessToken = userData?.data?.accessToken;
     const name = userData?.data?.name;
