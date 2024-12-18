@@ -51,7 +51,7 @@ Ensure you have the following installed:
 
 ## H2 How to run the project locally
 1. start a local server:
-  npm start
+   visual studio code live server(pathing might not work, dont forget to change pathing to ../ instead of /Semester-Project-2/)
 2. open the application in your browser:
    http://localhost:3000
 
