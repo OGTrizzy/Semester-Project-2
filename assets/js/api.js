@@ -13,7 +13,9 @@ import {
  */
 export async function fetchListings() {
   try {
-    const response = await fetch(API_AUCTION_LISTINGS + "?_bids=true");
+    const response = await fetch(
+      API_AUCTION_LISTINGS + "?_bids=true&_active=true"
+    );
     if (!response.ok) throw new Error("Failed to fetch auction listings.");
 
     const { data } = await response.json();
