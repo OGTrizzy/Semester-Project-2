@@ -79,8 +79,4 @@ export async function initHeader() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initHeader);
-} else {
-  initHeader();
-}
+document.addEventListener("DOMContentLoaded", initHeader);
